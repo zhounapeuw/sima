@@ -120,6 +120,12 @@ def _frame_alignment_base(
         pool = multiprocessing.Pool(processes=n_processes, maxtasksperchild=1)
 
     for cycle_idx, cycle in zip(it.count(), dataset):
+
+        #CZ added
+        #tmp = zip(it.count(), cycle, it.repeat(cycle_idx),
+        #            it.repeat(method), it.repeat(max_displacement))
+        #print(list(tmp)[5])
+
         chunksize = min(1 + old_div(len(cycle), n_processes), 200)
         if n_processes > 1:
             map_generator = pool.imap_unordered(

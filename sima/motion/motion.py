@@ -138,8 +138,8 @@ class MotionEstimationStrategy(with_metaclass(abc.ABCMeta, object)):
             frame_shape)
         corrected_sequences = [
             s[:, planes, rows, columns] for s in corrected_sequences]
-        return sima.ImagingDataset(
-            corrected_sequences, savedir, channel_names=channel_names)
+        return [sima.ImagingDataset(
+            corrected_sequences, savedir, channel_names=channel_names), rows, columns] # CZ added rows and columns (trimming edges)
 
 
 class ResonantCorrection(MotionEstimationStrategy):
